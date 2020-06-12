@@ -32,7 +32,8 @@ Homebrew 를 통한 설치 - $ `brew cask install docker`
 -t | tty : pseudo-TTY 할당 (tty : 일반 CLI 콘솔 / CLI : Command Line Interface)
 -it |	-i와 -t를 동시에 사용한 것으로 터미널 입력을 위한 옵션
 –link |	컨테이너 연결 [컨테이너명:별칭]
-* 참고 : [초보를 위한 도커 안내서 - 설치하고 컨테이너 실행하기](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)
+
+참고 : [초보를 위한 도커 안내서 - 설치하고 컨테이너 실행하기](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)
 
 * 실행 중인 컨테이너만 보기 - $ `docker ps`
 * 종료된 컨테이너도 포함해서 보기 - $ `docker ps -a`
