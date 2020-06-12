@@ -6,8 +6,8 @@
 
 ## 도커 설치
 ### macOS
-* Homebrew 를 통한 설치 - $ `brew cask install docker`
-* 설치 후 버전 확인 - $ `docker version`
+Homebrew 를 통한 설치 - $ `brew cask install docker`  
+설치 후 버전 확인 - $ `docker version`  
 
 ## 도커 
 ### 이미지
@@ -16,7 +16,7 @@
 * 이미지 삭제하기 - $ `docker rmi [이미지이름]:[이미지태그]`
 
 ### 컨테이너 
-* 컨테이너 생성 및 실행
+컨테이너 생성 및 실행
     - $ `docker run [OPTIONS] [image명] [COMMAND] [ARGS...]`
     - 자주 사용하는 옵션(OPTIONS) - $ `docker run --help` 로 확인가능
     
