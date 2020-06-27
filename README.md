@@ -123,7 +123,12 @@ bitnami/redmine                Bitnami Docker Image for Redmine                5
 ```
 * STAR: 즐겨찾기 수
 * OFFICIAL: 공식 이미지
-* AUTOMATED: Dockerfile을 바탕으로 자동 생성된 이미지
+* AUTOMATED: Dockerfile을 바탕으로 자동 생성된 이미지   
+
+필터링하기
+* 1000개 이상 즐겨찾기인 이미지만 탐색: `docker search --filter stars=1000 [이미지명]`
+* 공식 이미지만 탐색: `docker search --filter is-official=true [이미지명]`
+
 
 ## System Info
 ### 명령어
