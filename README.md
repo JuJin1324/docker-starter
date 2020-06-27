@@ -58,6 +58,55 @@ docker rmi `docker images`
 docker rm `docker ps -a`
 ```
 
+### Digest
+도커 이미지 파일의 해시 값
+
+### DCT(Docker Content Trust)
+도커 이미지 생성자의 개인키를 통해 서명한 이미지에 대해서 해당 개인키에 대한 공개키로 위변조 검증하는 기능   
+다음 명령어를 통해서 enable 시키면 `docker image pull`로 이미지를 다운로드 시에 공개키로 위변조를 검증한다.
+``` shell
+export DOCKER_CONTENT_TRUST=1
+```
+
+### 이미지 상세 정보 표시
+* 상세 정보 모두 표시: `docker image inspect [이미지명]`   
+``` shell
+# 예시
+docker image inspect nginx
+# 결과
+[
+    {
+        "Id": "sha256:2622e6cca7ebbb6e310743abce3fc47335393e79171b9d76ba9d4f446ce7b163",
+        "RepoTags": [
+            "nginx:latest"
+        ],
+        "RepoDigests": [
+            "nginx@sha256:21f32f6c08406306d822a0e6e8b7dc81f53f336570e852e25fbe1e3e3d0d0133"
+        ],
+        "Parent": "",
+        "Comment": "",
+        "Created": "2020-06-09T16:57:42.632836191Z",
+        "Container": "53e54c20f21e263548ac09475373e20dfef58dd38aebc6caec258b4ff6c2446c",
+        "ContainerConfig": {
+        ...
+```
+
+* 위의 명령어 중 특정 원소 정보의 값만 표시: `docker images inspect --format="{{.키}} [이미지명]"
+``` shell
+# 예시
+docker image inspect --format="{{.Os}} nginx
+# 결과
+linux
+```
+
+### 이미지 태깅
+* 명령어: `docker image tag [컨테이너 태그명] [Docker Hub 사용자명]/[이미지명]:[태그명]`
+``` shell
+# 예시
+docker image tag nginx jujin/webserver:1.0
+# 확인
+docker iamges
+```
 
 ## System Info
 ### 명령어
