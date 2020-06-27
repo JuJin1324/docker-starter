@@ -2,7 +2,7 @@
 도커 기초 정리   
 
 ## 설치
-### macOS
+### Docker Desktop CE: macOS
 설치 후 버전 확인
 ```shell
 brew cask install docker
@@ -107,6 +107,23 @@ docker image tag nginx jujin/webserver:1.0
 # 확인
 docker iamges
 ```
+
+### 이미지 찾기
+Docker Hub에서 이미지 검색
+* 명령어: `docker search [이미지 명]`
+``` shell
+# 예시
+docker search redmine
+# 결과
+NAME                           DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+redmine                        Redmine is a flexible project management web…   893                 [OK]                
+sameersbn/redmine                                                              316                                     [OK]
+bitnami/redmine                Bitnami Docker Image for Redmine                54                                      [OK]
+...
+```
+* STAR: 즐겨찾기 수
+* OFFICIAL: 공식 이미지
+* AUTOMATED: Dockerfile을 바탕으로 자동 생성된 이미지
 
 ## System Info
 ### 명령어
