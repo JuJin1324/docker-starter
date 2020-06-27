@@ -43,9 +43,12 @@ docker rmi `docker images`
 
 참조 사이트 : [초보를 위한 도커 안내서 - 설치하고 컨테이너 실행하기](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)
 
-* 컨테이너 종료: `docker kill [컨테이너 id]`
-* 종료된 컨테이너 재실행: `docker restart [종료된 컨테이너id]`, 종료된 컨테이너의 아이디는 `docker ps -a`를 통해서 알아낸다. 
-* 컨테이너 삭제하기: `docker rm [컨테이너id]`
+* 컨테이너 중지: `docker stop [컨테이너 이름 or ID]`
+* 컨테이너 시작: `docker start [컨테이너 이름 or ID]`
+* 컨테이너 재시작: `docker restart [컨테이너 이름 or ID]`
+* 컨테이너 종료: `docker kill [컨테이너 이름 or ID]`
+* 컨테이너 삭제하기: `docker rm [컨테이너 이름 or ID]`
+* 실행 중인 컨테이너의 가동 상태 확인(CPU/Mem 점유율, Network IO 등): `docker stats [컨테이너 이름 or ID]`
 
 ### 자주 사용
 * 실행 중인 컨테이너만 보기: `docker ps`
@@ -54,6 +57,7 @@ docker rmi `docker images`
 ``` shell
 docker rm `docker ps -a`
 ```
+
 
 ## System Info
 ### 명령어
