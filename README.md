@@ -10,52 +10,27 @@ docker version
 ```
 
 ## 이미지
-### 기본 명령어
-* 이미지 가져오기: `docker pull [image명]`
-* 이미지 목록보기: `docker images`
-* 이미지 삭제하기: `docker rmi [이미지이름]:[이미지태그]`
-
-### 자주 사용
-* 모든 이미지 삭제: 
+### 이미지 가져오기
+* 명령어: `docker pull [image명]`
 ``` shell
-docker rmi `docker images`
+# 예시 1
+docker pull ubuntu:latest
+# 예시 2: 태그명 생략하면 자동으로 latest로 pulling
+docker pull ubuntu
 ```
 
-## 컨테이너 실행
-이미지를 삽입하여 도커 위에서 실행하는 프로세스
+### 이미지 목록보기
+* 명령어: `docker images`
 
-### 기본 명령어
-* 컨테이너 생성 및 실행: `docker run [OPTIONS] [image명] [COMMAND] [ARGS...]`  
-자주 사용하는 옵션(OPTIONS): `docker run --help` 로 확인가능
-    
-옵션 | 설명
-----|----
--d |	detached mode 흔히 말하는 백그라운드 모드
--p |	호스트와 컨테이너의 포트를 연결 (포워딩)
--v |	호스트와 컨테이너의 디렉토리를 연결 (마운트)
--e |	컨테이너 내에서 사용할 환경변수 설정
-–name |	컨테이너 이름 설정
-–rm |	프로세스 종료시 컨테이너 자동 제거
--i | interactive 모드 : Keep STDIN open even if not attached
--t | tty : pseudo-TTY 할당 (tty : 일반 CLI 콘솔 / CLI : Command Line Interface)
--it |	-i와 -t를 동시에 사용한 것으로 터미널 입력을 위한 옵션
-–link |	컨테이너 연결 [컨테이너명:별칭]
-
-참조 사이트 : [초보를 위한 도커 안내서 - 설치하고 컨테이너 실행하기](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)
-
-* 컨테이너 중지: `docker stop [컨테이너 이름 or ID]`
-* 컨테이너 시작: `docker start [컨테이너 이름 or ID]`
-* 컨테이너 재시작: `docker restart [컨테이너 이름 or ID]`
-* 컨테이너 종료: `docker kill [컨테이너 이름 or ID]`
-* 컨테이너 삭제하기: `docker rm [컨테이너 이름 or ID]`
-* 실행 중인 컨테이너의 가동 상태 확인(CPU/Mem 점유율, Network IO 등): `docker stats [컨테이너 이름 or ID]`
-
-### 자주 사용
-* 실행 중인 컨테이너만 보기: `docker ps`
-* 종료된 컨테이너도 포함해서 보기: `docker ps -a`
-* 모든 컨테이너 삭제:
+### 이미지 삭제
+* 명령어: `docker rmi [이미지이름]:[이미지태그]`
 ``` shell
-docker rm `docker ps -a`
+# 예시 1: 특정 이미지 삭제
+docker rmi ubuntu
+# 예시 2: 모든 이미지 삭제
+docker rmi `docker images`
+# 예시 3: 모든 이미지 강제 삭제(-f)
+docker rmi -f `docker images`
 ```
 
 ### Digest
@@ -129,6 +104,42 @@ bitnami/redmine                Bitnami Docker Image for Redmine                5
 * 1000개 이상 즐겨찾기인 이미지만 탐색: `docker search --filter stars=1000 [이미지명]`
 * 공식 이미지만 탐색: `docker search --filter is-official=true [이미지명]`
 
+## 컨테이너 실행
+이미지를 삽입하여 도커 위에서 실행하는 프로세스
+
+### 기본 명령어
+* 컨테이너 생성 및 실행: `docker run [OPTIONS] [image명] [COMMAND] [ARGS...]`  
+자주 사용하는 옵션(OPTIONS): `docker run --help` 로 확인가능
+    
+옵션 | 설명
+----|----
+-d |	detached mode 흔히 말하는 백그라운드 모드
+-p |	호스트와 컨테이너의 포트를 연결 (포워딩)
+-v |	호스트와 컨테이너의 디렉토리를 연결 (마운트)
+-e |	컨테이너 내에서 사용할 환경변수 설정
+–name |	컨테이너 이름 설정
+–rm |	프로세스 종료시 컨테이너 자동 제거
+-i | interactive 모드 : Keep STDIN open even if not attached
+-t | tty : pseudo-TTY 할당 (tty : 일반 CLI 콘솔 / CLI : Command Line Interface)
+-it |	-i와 -t를 동시에 사용한 것으로 터미널 입력을 위한 옵션
+–link |	컨테이너 연결 [컨테이너명:별칭]
+
+참조 사이트 : [초보를 위한 도커 안내서 - 설치하고 컨테이너 실행하기](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)
+
+* 컨테이너 중지: `docker stop [컨테이너 이름 or ID]`
+* 컨테이너 시작: `docker start [컨테이너 이름 or ID]`
+* 컨테이너 재시작: `docker restart [컨테이너 이름 or ID]`
+* 컨테이너 종료: `docker kill [컨테이너 이름 or ID]`
+* 컨테이너 삭제하기: `docker rm [컨테이너 이름 or ID]`
+* 실행 중인 컨테이너의 가동 상태 확인(CPU/Mem 점유율, Network IO 등): `docker stats [컨테이너 이름 or ID]`
+
+### 자주 사용
+* 실행 중인 컨테이너만 보기: `docker ps`
+* 종료된 컨테이너도 포함해서 보기: `docker ps -a`
+* 모든 컨테이너 삭제:
+``` shell
+docker rm `docker ps -a`
+```
 
 ## System Info
 ### 명령어
