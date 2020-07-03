@@ -113,12 +113,7 @@ bitnami/redmine                Bitnami Docker Image for Redmine                5
     
 옵션 | 설명
 ----|----
--d |	detached mode 흔히 말하는 백그라운드 모드
--p |	호스트와 컨테이너의 포트를 연결 (포워딩)
--v |	호스트와 컨테이너의 디렉토리를 연결 (마운트)
 -e |	컨테이너 내에서 사용할 환경변수 설정
-–name |	컨테이너 이름 설정
-–rm |	프로세스 종료시 컨테이너 자동 제거
 -i | interactive 모드 : Keep STDIN open even if not attached
 -t | tty : pseudo-TTY 할당 (tty : 일반 CLI 콘솔 / CLI : Command Line Interface)
 -it |	-i와 -t를 동시에 사용한 것으로 터미널 입력을 위한 옵션
@@ -131,32 +126,52 @@ bitnami/redmine                Bitnami Docker Image for Redmine                5
 * 컨테이너 재시작: `docker restart [컨테이너 이름 or ID]`
 * 컨테이너 종료: `docker kill [컨테이너 이름 or ID]`
 * 컨테이너 삭제하기: `docker rm [컨테이너 이름 or ID]`
-* 실행 중인 컨테이너의 가동 상태 확인(CPU/Mem 점유율, Network IO 등): `docker stats [컨테이너 이름 or ID]`
-
-### 자주 사용
 * 실행 중인 컨테이너만 보기: `docker ps`
 * 종료된 컨테이너도 포함해서 보기: `docker ps -a`
-* 모든 컨테이너 삭제:
-``` shell
+
+### 모든 컨테이너 삭제
+``` bash
 docker rm `docker ps -a`
+# 혹은
+docker container prune -f
 ```
+
+### 생성과 동시에 bash 접속
+"my-cent" 이름으로 centos 컨테이너 생성 후 bash 접속: `docker run -it --name "my-cent" centos /bin/bash`
+
+### background 실행
+컨테이너 background 실행: `docker run -d --name "my-cent" centos /bin/ping localhost`   
+ping localhost 실행 확인(-t 는 timestamp): `docker logs -t my-cent`
+
+### 실행 후 자동 삭제
+컨테이너 실행 이후 자동 삭제(stop이 아닌 삭제기 때문에 컨테이너에 이름을 줄 필요가 없음): `docker run -it --rm centos /bin/echo 'hello world'`
+
+### 포트 맵핑
+Host OS와 컨테이너 포트 맵핑(Host OS Port:Container Port): `docker run -p 8080:80 nginx`
+
+### 디렉터리 맵핑
+설명: -v [Host OS 디렉터리 경로]:[Container 디렉터리 경로] 를 통해서 Host OS의 디렉터리 경로와 Container 디렉터리 경로를 맵핑한다.   
+주의 
+* Host OS에 해당 디렉터리 경로가 이미 존재하는 경우 Container 생성 시 기존 Host OS 디렉터리 경로에 있던 파일들이 그대로 유지된다.(마치 Host OS의 디렉터리를 Container의 디렉터리로 장착(마운트)하는 느낌)
+* Host OS에 해당 디렉터리 경로가 존재하지 않으면 해당 디렉터리를 생성한다. 여기서도 기존의 디렉터리가 이미 존재하는 경우와 똑같이 빈 디렉터리가 Container에 장착(마운트) 됨으로 Container의 디렉터리에도 아무것도 존재하지 않는다.
+
+### 작업 디렉터리 지정
+설명: --workdir 혹은 -w 사용하여 컨테이너 내부의 작업 디렉토리 지정하고 bash로 실행하면 해당 디렉터리에서 시작   
+예제: `docker run -it -w=/home/workspace centos /bin/bash` 후 내부 쉘에서 `pwd` 시 /home/workspace가 나온다.
+
+### 가동 확인
+실행 중인 컨테이너의 가동 상태 확인(CPU/Mem 점유율, Network IO 등): `docker stats [컨테이너 이름 or ID]`
+
+### 실행 프로세스 확인
+컨테이너 내부에서 실행 중인 프로세스 확인: `docker top [컨테이너 이름 or ID]`
+
+### 5초 후 종료
+`docker stop -t 5 [컨테이너 이름 or ID]`
+
+
 
 ## System Info
 ### 명령어
 * Docker 자체 버전 및 정보 확인: `docker version`
 * Docker 실행 환경 확인: `docker info`
 * Docker 디스크 이용 상황 확인: `docker system df`
-
-## 컨테이너 실행
-### 예제
-* "my-cent" 이름으로 centos 컨테이너 생성 후 bash 접속: `docker run -it --name "my-cent" centos /bin/bash`
-* 컨테이너 background 실행: `docker run -d --name "my-cent" centos /bin/ping localhost`
-* ping localhost 실행 확인(-t 는 timestamp): `docker logs -t my-cent`
-* 컨테이너 실행 이후 자동 삭제(stop이 아닌 삭제기 때문에 컨테이너에 이름을 줄 필요가 없음): `docker run -it --rm centos /bin/echo 'hello world'`
-
-## -v 사용시 주의사항
-### 설명
--v [Host OS 디렉터리 경로]:[Container 디렉터리 경로] 를 통해서 Host OS의 디렉터리 경로와 Container 디렉터리 경로를 맵핑한다.
-### 주의
-* Host OS에 해당 디렉터리 경로가 이미 존재하는 경우 Container 생성 시 기존 Host OS 디렉터리 경로에 있던 파일들이 그대로 유지된다.(마치 Host OS의 디렉터리를 Container의 디렉터리로 장착(마운트)하는 느낌)
-* Host OS에 해당 디렉터리 경로가 존재하지 않으면 해당 디렉터리를 생성한다. 여기서도 기존의 디렉터리가 이미 존재하는 경우와 똑같이 빈 디렉터리가 Container에 장착(마운트) 됨으로 Container의 디렉터리에도 아무것도 존재하지 않는다.
