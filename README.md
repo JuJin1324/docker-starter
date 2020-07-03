@@ -151,5 +151,5 @@ docker rm `docker ps -a`
 ### 예제
 * "my-cent" 이름으로 centos 컨테이너 생성 후 bash 접속: `docker run -it --name "my-cent" centos /bin/bash`
 * 컨테이너 background 실행: `docker run -d --name "my-cent" centos /bin/ping localhost`
-* ping localhost 실행 확인: `docker logs -t my-cent`
+* ping localhost 실행 확인(-t 는 timestamp): `docker logs -t my-cent`
 * 컨테이너 실행 이후 자동 삭제(stop이 아닌 삭제기 때문에 컨테이너에 이름을 줄 필요가 없음): `docker run -it --rm centos /bin/echo 'hello world'`
