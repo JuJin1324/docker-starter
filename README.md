@@ -175,6 +175,24 @@ Host OS와 컨테이너 포트 맵핑(Host OS Port:Container Port): `docker run 
 * Docker 디스크 이용 상황 확인: `docker system df`
 
 ## Network
+### 생성
+* 기본: `docker network create [네트워크 명]`
+* driver 브릿지로 생성: `docker network create -d bridge web-network`
+* 서브넷 CIDR 지정: `docker network create --subnet=172.25.0.0/16 web-network`
+
+### 연결
+* 기본: `docker network connect [네트워크 명] [컨테이너 명]`
+* 컨테이너 생성과 동시에 연결: `docker run -itd --name=webap --net=web-network nginx`
+
+### 확인
+* 목록 확인: `docker network ls`
+* 상세정보(네트워크의 gateway, subnet, 네트워크와 연결된 컨테이너 등) 확인: `docker network inspect [네트워크 명]`
+
+### 해제
+기본: `docker network disconnect [네트워크 명] [컨테이너 명]`
+
+### 삭제
+기본: `docker network rm [네트워크 명]`
 
 ### 참조사이트
 * [도커 네트워크 요약 (Docker Networking)](https://jonnung.dev/docker/2020/02/16/docker_network/)
