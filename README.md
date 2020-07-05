@@ -139,6 +139,9 @@ docker container prune -f
 ### 생성과 동시에 bash 접속
 "my-cent" 이름으로 centos 컨테이너 생성 후 bash 접속: `docker run -it --name "my-cent" centos /bin/bash`
 
+### 기존에 떠있는 Container에 bash 접속
+`docker exec -it [컨테이너 명] /bin/bash`
+
 ### background 실행
 컨테이너 background 실행: `docker run -d --name "my-cent" centos /bin/ping localhost`   
 ping localhost 실행 확인(-t 는 timestamp): `docker logs -t my-cent`
