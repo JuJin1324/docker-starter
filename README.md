@@ -147,7 +147,8 @@ docker container prune -f
 ping localhost 실행 확인(-t 는 timestamp): `docker logs -t my-cent`
 
 ### 실행 후 자동 삭제
-컨테이너 실행 이후 자동 삭제(stop이 아닌 삭제기 때문에 컨테이너에 이름을 줄 필요가 없음): `docker run -it --rm centos /bin/echo 'hello world'`
+stop이 아닌 삭제기 때문에 --name을 통해서 컨테이너에 이름을 줄 필요가 없음   
+`docker run -it --rm centos /bin/echo 'hello world'`
 
 ### 포트 맵핑
 Host OS와 컨테이너 포트 맵핑(Host OS Port:Container Port): `docker run -p 8080:80 nginx`
