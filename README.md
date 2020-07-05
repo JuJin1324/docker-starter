@@ -167,7 +167,7 @@ docker port [컨테이너 명]
 
 ### 컨테이너 tar export/import
 * export: `docker container export [컨테이너 명] > sample.tar`
-* import: `cat sample.tar | docker image import - [임의지정 태그]:[임의지정 이미지명][임의지정 버전]`
+* import: `cat sample.tar | docker image import - [임의지정 태그]/[임의지정 이미지명][임의지정 버전]`
 
 ### 디렉터리 맵핑
 설명: -v [Host OS 디렉터리 경로]:[Container 디렉터리 경로] 를 통해서 Host OS의 디렉터리 경로와 Container 디렉터리 경로를 맵핑한다.   
