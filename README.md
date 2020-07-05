@@ -153,6 +153,16 @@ stop이 아닌 삭제기 때문에 --name을 통해서 컨테이너에 이름을
 ### 포트 맵핑
 Host OS와 컨테이너 포트 맵핑(Host OS Port:Container Port): `docker run -p 8080:80 nginx`
 
+포트 맵핑된 포트 확인: 
+```bash
+# 명령어
+docker port [컨테이너 명]
+# 결과
+# 내부 포트 -> Host OS 포트
+80/tcp -> 0.0.0.0:8080
+```
+
+
 ### 디렉터리 맵핑
 설명: -v [Host OS 디렉터리 경로]:[Container 디렉터리 경로] 를 통해서 Host OS의 디렉터리 경로와 Container 디렉터리 경로를 맵핑한다.   
 주의 
