@@ -104,6 +104,10 @@ bitnami/redmine                Bitnami Docker Image for Redmine                5
 * 1000개 이상 즐겨찾기인 이미지만 탐색: `docker search --filter stars=1000 [이미지명]`
 * 공식 이미지만 탐색: `docker search --filter is-official=true [이미지명]`
 
+### 이미지 저장
+* 저장: `docker image save -o export.tar [이미지명]`
+* 읽어들이기: `docker image load -i export.tar`
+
 ## 컨테이너 실행
 이미지를 삽입하여 도커 위에서 실행하는 프로세스
 
