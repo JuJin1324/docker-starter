@@ -3,7 +3,8 @@
 
 ## 도커 데이터 지우기
 > 도커 데이터 용량 확인: `docker system df`   
-> 도커 컨테이너 모두 삭제: `docker volume rm $(docker volume ls -q)`
+> 도커 컨테이너 정리: `docker volume prune`  
+> 도커 컨테이너 강제 삭제: `docker volume rm $(docker volume ls -q)`  
 
 ## 설치
 ### Docker Desktop CE: macOS
