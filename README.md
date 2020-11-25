@@ -1,6 +1,10 @@
 # Docker-starter
 도커 기초 정리   
 
+## 도커 데이터 지우기
+> 도커 데이터 용량 확인: `docker system df`   
+> 도커 컨테이너 모두 삭제: `docker volume rm $(docker volume ls -q)`
+
 ## 설치
 ### Docker Desktop CE: macOS
 설치 후 버전 확인
