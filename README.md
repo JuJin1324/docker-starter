@@ -148,13 +148,13 @@
 > 
 > 참조 사이트 : [초보를 위한 도커 안내서 - 설치하고 컨테이너 실행하기](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)
 >
-> 컨테이너 중지: `docker stop [컨테이너 이름 or ID]`
-> 컨테이너 시작: `docker start [컨테이너 이름 or ID]`
-> 컨테이너 재시작: `docker restart [컨테이너 이름 or ID]`
-> 컨테이너 종료: `docker kill [컨테이너 이름 or ID]`
-> 컨테이너 삭제하기: `docker rm [컨테이너 이름 or ID]`
-> 실행 중인 컨테이너만 보기: `docker ps`
-> 종료된 컨테이너도 포함해서 보기: `docker ps -a`
+> 컨테이너 중지: `docker stop [컨테이너 이름 or ID]`  
+> 컨테이너 시작: `docker start [컨테이너 이름 or ID]`  
+> 컨테이너 재시작: `docker restart [컨테이너 이름 or ID]`  
+> 컨테이너 종료: `docker kill [컨테이너 이름 or ID]`  
+> 컨테이너 삭제하기: `docker rm [컨테이너 이름 or ID]`  
+> 실행 중인 컨테이너만 보기: `docker ps`  
+> 종료된 컨테이너도 포함해서 보기: `docker ps -a`  
 
 ### 모든 컨테이너 삭제
 > ```bash
@@ -201,13 +201,15 @@
 > import: `cat sample.tar | docker image import - [임의지정 태그]/[임의지정 이미지명][임의지정 버전]`  
 
 ### 볼륨 마운트(디렉터리 맵핑)
-> 설명: -v [Host OS 디렉터리 경로]:[Container 디렉터리 경로] 를 통해서 Host OS의 디렉터리 경로와 Container 디렉터리 경로를 맵핑한다.
+> `-v [Host OS 디렉터리 경로]:[Container 디렉터리 경로]`  
+> 설명: Host OS의 디렉터리 경로와 Container 디렉터리 경로를 맵핑한다.
 > 
 > 주의   
 > Host OS에 해당 디렉터리 경로가 이미 존재하는 경우 Container 생성 시 기존 Host OS 디렉터리 경로에 있던 파일들이 그대로 유지된다.
 > (마치 Host OS의 디렉터리를 Container의 디렉터리로 장착(마운트)하는 느낌)  
-> Host OS에 해당 디렉터리 경로가 존재하지 않으면 해당 디렉터리를 생성한다. 여기서도 기존의 디렉터리가 이미 존재하는 경우와 똑같이 
-> 빈 디렉터리가 Container에 장착(마운트) 됨으로 Container의 디렉터리에도 아무것도 존재하지 않는다.  
+> Host OS에 해당 디렉터리 경로가 존재하지 않으면 해당 디렉터리를 생성한다. 
+> 만약 볼륨으로 사용할 디렉터리가 비어 있는 디렉터리로 이미 존재하는 경우 해당 디렉터리가 Container에 장착(마운트) 됨으로 
+> Container의 디렉터리에도 아무것도 존재하지 않는다.  
 
 ### 작업 디렉터리 지정
 > 설명: --workdir 혹은 -w 사용하여 컨테이너 내부의 작업 디렉토리 지정하고 bash로 실행하면 해당 디렉터리에서 시작   
@@ -243,12 +245,12 @@
 
 ## Network
 ### 생성
-> 기본: `docker network create [네트워크 명]`
-> driver 브릿지로 생성: `docker network create -d bridge web-network`  
-> 서브넷 CIDR 지정: `docker network create --subnet=172.25.0.0/16 web-network`  
+> 기본: `docker network create [네트워크 명]`  
+> driver 브릿지로 생성: `docker network create -d bridge web-network`    
+> 서브넷 CIDR 지정: `docker network create --subnet=172.25.0.0/16 web-network`   
 
 ### 연결
-> 기본: `docker network connect [네트워크 명] [컨테이너 명]`  
+> 기본: `docker network connect --net=[네트워크 명] [컨테이너 명]`  
 > 컨테이너 생성과 동시에 연결: `docker run -itd --name=webap --net=web-network nginx`  
 
 ### 확인
