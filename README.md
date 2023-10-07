@@ -51,6 +51,7 @@
 ### DCT(Docker Content Trust)
 > 도커 이미지 생성자의 개인키를 통해 서명한 이미지에 대해서 해당 개인키에 대한 공개키로 위변조 검증하는 기능.     
 > 다음 명령어를 통해서 enable 시키면 `docker image pull`로 이미지를 다운로드 시에 공개키로 위변조를 검증한다.  
+> 주의: Docker 사용에 영향을 미치므로 잘 조사한 후에 사용한다.  
 > ```bash
 > export DOCKER_CONTENT_TRUST=1
 > 
